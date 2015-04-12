@@ -56,7 +56,7 @@ def ListOfTestingExpressionsAndExpectedResults(function, ListOfVariableAndResult
     где необходимо заменяет VAR на переменные;
     Возвращает список ListOfTestsAndResults
     Example:
-    >>> ListOfTestingExpressionsAndExpectedResults("5+3", ["_8", "_9"])
+    >>> ListOfTestingExpressionsAndExpectedResults("5+3", [(, 8), (, 9)])
     [('5+3', '8'), ('5+3', '9')]
     >>> from math import*
     >>> ListOfTestingExpressionsAndExpectedResults("sin(VAR)", ["3.14_0", "0_0"])
@@ -65,8 +65,8 @@ def ListOfTestingExpressionsAndExpectedResults(function, ListOfVariableAndResult
     """
     ListOfTestsAndResults = []
     for variable_result in ListOfVariableAndResults:
-        variable_result = variable_result.split('_')
-        testingExpression = function.replace('VAR', variable_result[0])
+        variable = variable_result[0]
+        testingExpression = function.replace('VAR', str(variable))
         expectedResult = variable_result[1]
         ListOfTestsAndResults.append((testingExpression, expectedResult))
     return ListOfTestsAndResults
